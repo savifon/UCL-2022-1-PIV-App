@@ -11,11 +11,8 @@ defineProps({
 <template>
   <div class="product-item">
     <picture>
-      <source
-        :srcset="'./src/assets/images/' + product.image"
-        type="image/jpg"
-      />
-      <img :src="'./src/assets/images/' + product.image" :alt="product.name" />
+      <source srcset="../assets/images/product-1.jpg" type="image/jpg" />
+      <img src="../assets/images/product-1.jpg" :alt="product.name" />
     </picture>
 
     <p>{{ product.name }}</p>
