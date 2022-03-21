@@ -5,7 +5,7 @@ export const useCartStore = defineStore({
 
   state: () => ({
     cart: {
-      products: JSON.parse(localStorage.getItem("cart")).products ?? []
+      products: localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")).products : []
     }
   }),
 
