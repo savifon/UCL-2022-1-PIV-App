@@ -2,6 +2,10 @@
 import { RouterLink } from "vue-router";
 import SearchApp from "./SearchApp.vue";
 import IconShoppingBasket from "./icons/IconShoppingBasket.vue";
+
+defineProps({
+  countCart: Number
+})
 </script>
 
 <template>
@@ -13,7 +17,7 @@ import IconShoppingBasket from "./icons/IconShoppingBasket.vue";
         <SearchApp />
         <nav>
           <RouterLink to="/">
-            Minha cesta (0)
+            Minha cesta ({{ countCart }})
             <IconShoppingBasket />
           </RouterLink>
         </nav>

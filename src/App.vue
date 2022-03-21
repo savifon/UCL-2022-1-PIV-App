@@ -1,16 +1,12 @@
 <script setup>
 import { RouterView } from "vue-router";
 import HeaderApp from "./components/HeaderApp.vue";
+import { useCartStore } from "./stores/cart";
+
+const cartStore = useCartStore();
 </script>
 
 <template>
-  <!-- <div id="content"></div>
-  <footer></footer> -->
-  <HeaderApp />
-
+  <HeaderApp :countCart="cartStore.count" />
   <RouterView />
 </template>
-
-<style>
-/* @import "@/assets/base.css"; */
-</style>

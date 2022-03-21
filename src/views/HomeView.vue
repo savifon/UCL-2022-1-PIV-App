@@ -1,23 +1,6 @@
 <script setup>
 import ProductList from "../components/ProductList.vue";
-
-const products = [
-  {
-    image: "product-1.jpg",
-    name: "Ração para cães adultos a granel - 100g",
-    price: 123.45,
-  },
-  {
-    image: "product-1.jpg",
-    name: "Ração para gatos adultos a granel - 100g",
-    price: 345.67,
-  },
-  {
-    image: "product-1.jpg",
-    name: "Ração para cães filhotes a granel - 100g",
-    price: 567.89,
-  },
-];
+import products from '../../products.json';
 </script>
 
 <template>

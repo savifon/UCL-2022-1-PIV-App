@@ -1,4 +1,8 @@
 <script setup>
+import { useCartStore } from '../stores/cart';
+
+const cartStore = useCartStore();
+
 defineProps({
   product: {
     image: String,
@@ -19,9 +23,9 @@ defineProps({
     <p>R$ {{ product.price }}</p>
 
     <div role="group">
-      <button type="button">-</button>
-      <input type="text" disabled value="00" />
-      <button type="button" class="add">+</button>
+      <button type="button" @click="cartStore.removeFromCart(product)">-</button>
+      <input type="text" disabled :value="cartStore.totalQtyItem(product)" />
+      <button type="button" class="add" @click="cartStore.addToCart(product)">+</button>
     </div>
   </div>
 </template>

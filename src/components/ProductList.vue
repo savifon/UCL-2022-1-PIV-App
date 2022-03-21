@@ -8,8 +8,8 @@ defineProps({
 
 <template>
   <ProductItem
-    v-for="(product, index) in products"
-    :key="`product-item-${index}`"
+    v-for="product in products"
+    :key="`product-item-${product.id}`"
     :product="product"
   />
 </template>
