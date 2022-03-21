@@ -1,6 +1,6 @@
 <script setup>
 import ProductList from "../components/ProductList.vue";
-import products from '../../products.json';
+import products from '@/products.json';
 </script>
 
 <template>
