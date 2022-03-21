@@ -1,22 +1,12 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
+import { RouterView } from "vue-router";
+import HeaderApp from "./components/HeaderApp.vue";
 </script>
 
 <template>
-  <!-- <header></header>
-  <div id="content"></div>
+  <!-- <div id="content"></div>
   <footer></footer> -->
-
-  <h1 class="text-3xl font-bold underline">OPAA</h1>
-
-  <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
+  <HeaderApp />
 
   <RouterView />
 </template>
