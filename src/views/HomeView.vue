@@ -21,7 +21,6 @@ const products = [
     "price": 567.89
   }
 ]
-
 </script>
 
 <template>
