@@ -7,6 +7,8 @@ import { RouterLink, RouterView } from "vue-router";
   <div id="content"></div>
   <footer></footer> -->
 
+  <h1 class="text-3xl font-bold underline">OPAA</h1>
+
   <header>
     <div class="wrapper">
       <nav>

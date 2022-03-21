@@ -1,10 +1,7 @@
-<script setup>
-import TheWelcome from "@/components/TheWelcome.vue";
-</script>
+<script setup></script>
 
 <template>
   <main>
     <!-- <div id="list-products"></div> -->
-    <TheWelcome />
   </main>
 </template>
