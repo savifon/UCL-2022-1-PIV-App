@@ -9,18 +9,21 @@ export const useProductsStore = defineStore({
   state: () => ({
     items: {},
     ids: [],
-    query: "gat"
+    query: ""
   }),
 
   getters: {
-    list() {
-      if (!this.query) {
-        return this.ids.map((i) => this.items[i]);
+    list(state) {
+      if (state.query.length < 3) {
+        return state.ids.map((i) => this.items[i]);
       } else {
-        return this.ids.map((i) => this.items[i]);
-        // return this.ids.map((i) => {
-        //   if (this.items[i].name.includes(this.query)) return this.items[i];
-        // });
+        const filtered = [];
+        state.ids.map((id) => {
+          if (state.items[id].name.includes(this.query)) {
+            filtered.push(state.items[id]);
+          }
+        });
+        return filtered;
       }
     }
   },

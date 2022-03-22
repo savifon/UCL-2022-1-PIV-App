@@ -1,13 +1,14 @@
 <script setup>
-import { ref } from "vue";
+import { useProductsStore } from "@/stores/products";
 import IconSearch from "./icons/IconSearch.vue";
 
-const query = ref('');
+const productStore = useProductsStore();
+const filter = productStore.query;
 </script>
 
 <template>
   <div class="search-app">
-    <input type="text" placeholder="Pesquisar produto" v-model="query" />
+    <input type="text" placeholder="Pesquisar produto" v-model="filter" @input="productStore.query = filter" />
     <IconSearch class="icon" />
   </div>
 </template>

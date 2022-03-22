@@ -6,7 +6,6 @@ import { useProductsStore } from '../stores/products';
 const productStore = useProductsStore();
 productStore.fetchProducts();
 const products = computed(() => productStore.list);
-console.log(products.value);
 </script>
 
 <template>
