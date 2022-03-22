@@ -1,7 +1,6 @@
 import { defineStore } from "pinia";
 
-const productsStoreUrl =
-  "https://raw.githubusercontent.com/savifon/UCL-2022-1-PIV-App/master";
+const productsStoreUrl = import.meta.env.VITE_GIT_REPO;
 
 export const useProductsStore = defineStore({
   id: "products",

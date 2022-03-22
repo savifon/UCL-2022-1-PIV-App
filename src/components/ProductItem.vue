@@ -2,7 +2,7 @@
 import { useCartStore } from '../stores/cart';
 
 const cartStore = useCartStore();
-const pathImages = import.meta.env.VITE_PATH_IMAGES;
+const pathImages = import.meta.env.VITE_GIT_REPO + import.meta.env.VITE_GIT_PATH_IMAGES;
 
 defineProps({
   product: {
@@ -11,17 +11,13 @@ defineProps({
     price: Number,
   },
 });
-
-function getImageUrl(image) {
-  return new URL(`${pathImages + image}`, import.meta.env.VITE_BASE_URL)
-}
 </script>
 
 <template>
   <div class="product-item">
     <picture>
-      <source :srcset="getImageUrl(product.image)" type="image/jpg" />
-      <img :src="getImageUrl(product.image)" :alt="product.name" />
+      <source :srcset="pathImages + product.image" type="image/jpg" />
+      <img :src="pathImages + product.image" :alt="product.name" />
     </picture>
 
     <p>{{ product.name }}</p>
