@@ -1,7 +1,7 @@
 <script setup>
 import { RouterLink } from "vue-router";
-import SearchApp from "./SearchApp.vue";
-import IconShoppingBasket from "./icons/IconShoppingBasket.vue";
+import SearchApp from "@/components/SearchApp.vue";
+import IconShoppingBasket from "@/components/icons/IconShoppingBasket.vue";
 
 defineProps({
   countCart: Number
@@ -11,12 +11,14 @@ defineProps({
 <template>
   <header class="header-app">
     <div>
-      <h1>PI-V App</h1>
+      <RouterLink class="logo" to="/">
+        PI-V App
+      </RouterLink>
 
       <div>
         <SearchApp />
         <nav>
-          <RouterLink to="/">
+          <RouterLink to="/pedido">
             Minha cesta ({{ countCart }})
             <IconShoppingBasket />
           </RouterLink>
@@ -33,7 +35,7 @@ defineProps({
   > div {
     @apply flex justify-between items-center w-4/5 py-3;
 
-    > h1 {
+    > .logo {
       @apply text-4xl font-semibold text-orange-900;
     }
 

@@ -1,17 +1,20 @@
 <script setup>
 import { computed } from "vue";
-import ProductList from "../components/ProductList.vue";
-import { useProductsStore } from '../stores/products';
+import ProductList from "@/components/ProductList.vue";
+import { useProductsStore } from '@/stores/products';
 
 const productStore = useProductsStore();
-productStore.fetchProducts();
 const products = computed(() => productStore.list);
 </script>
 
 <template>
-  <main class="w-4/5 mx-auto my-8">
-    <div class="flex gap-5">
-      <ProductList :products="products" />
-    </div>
-  </main>
+  <div class="product-list">
+    <ProductList :products="products" />
+  </div>
 </template>
+
+<style lang="scss" scoped>
+.product-list {
+  @apply flex gap-5;
+}
+</style>

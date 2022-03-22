@@ -1,12 +1,25 @@
 <script setup>
 import { RouterView } from "vue-router";
-import HeaderApp from "./components/HeaderApp.vue";
-import { useCartStore } from "./stores/cart";
+import HeaderApp from "@/components/HeaderApp.vue";
+import { useProductsStore } from '@/stores/products';
+import { useCartStore } from "@/stores/cart";
+
+const productStore = useProductsStore();
+productStore.fetchProducts();
 
 const cartStore = useCartStore();
 </script>
 
 <template>
   <HeaderApp :countCart="cartStore.count" />
-  <RouterView />
+
+  <main class="main-app">
+    <RouterView />
+  </main>
 </template>
+
+<style>
+.main-app {
+  @apply w-4/5 mx-auto my-8;
+}
+</style>

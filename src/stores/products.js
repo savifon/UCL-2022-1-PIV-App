@@ -8,27 +8,33 @@ export const useProductsStore = defineStore({
   state: () => ({
     items: {},
     ids: [],
-    query: ""
+    filter: ""
   }),
 
   getters: {
-    list(state) {
-      if (state.query.length < 3) {
-        return state.ids.map((i) => this.items[i]);
+    list() {
+      if (this.filter.length < 3) {
+        return this.ids.map((i) => this.items[i]);
       } else {
         const filtered = [];
-        state.ids.map((id) => {
-          if (state.items[id].name.includes(this.query)) {
-            filtered.push(state.items[id]);
+        this.ids.map((id) => {
+          if (this.items[id].name.includes(this.filter)) {
+            filtered.push(this.items[id]);
           }
         });
         return filtered;
       }
+    },
+
+    loaded() {
+      return this.ids.length > 0;
     }
   },
 
   actions: {
     async fetchProducts() {
+      if (this.loaded) return;
+
       const res = await fetch(`${productsStoreUrl}/products.json`);
       const data = await res.json();
       this.ids = data.map((product) => {

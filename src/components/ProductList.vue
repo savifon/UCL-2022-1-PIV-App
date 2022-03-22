@@ -1,5 +1,5 @@
 <script setup>
-import ProductItem from "./ProductItem.vue";
+import ProductItem from "@/components/ProductItem.vue";
 
 defineProps({
   products: Array,

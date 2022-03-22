@@ -20,7 +20,25 @@ export const useCartStore = defineStore({
 
     count() {
       return Object.keys(this.products).length;
-    }
+    },
+
+    list() {
+      const stock = useProductsStore();
+
+      if (!stock.loaded) return [];
+
+      return Object.keys(this.products).map((id) => {
+        const purchase = this.products[id];
+
+        return {
+          id: purchase.id,
+          image: stock.items[purchase.id].image,
+          name: stock.items[purchase.id].name,
+          qty: purchase.qty,
+          cost: purchase.qty * stock.items[purchase.id].price,
+        };
+      });
+    },
   },
 
   actions: {
