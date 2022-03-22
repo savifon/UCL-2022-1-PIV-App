@@ -16,13 +16,11 @@ export const useProductsStore = defineStore({
       if (this.filter.length < 3) {
         return this.ids.map((i) => this.items[i]);
       } else {
-        const filtered = [];
-        this.ids.map((id) => {
+        return this.ids.map((id) => {
           if (this.items[id].name.includes(this.filter)) {
-            filtered.push(this.items[id]);
+            return this.items[id];
           }
         });
-        return filtered;
       }
     },
 
