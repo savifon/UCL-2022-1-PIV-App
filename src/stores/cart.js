@@ -1,65 +1,63 @@
 import { defineStore } from "pinia";
+import { useProductsStore } from "./products";
 
 export const useCartStore = defineStore({
   id: "cart",
 
   state: () => ({
-    cart: {
-      products: localStorage.getItem("cart")
-        ? JSON.parse(localStorage.getItem("cart")).products
-        : []
-    }
+    products: localStorage.getItem("cart")
+      ? JSON.parse(localStorage.getItem("cart"))
+      : {}
   }),
 
   getters: {
     priceTotal() {
-      return this.cart.products.reduce((total, product) => {
-        return total + product.price * product.qty;
+      const products = useProductsStore();
+      return Object.keys(this.products).reduce((acc, id) => {
+        return acc + products.items[id].price * this.products[id].quantity;
       }, 0);
     },
 
     count() {
-      return this.cart.products.length;
+      return Object.keys(this.products).length;
     }
   },
 
   actions: {
-    addToCart(product) {
-      const found = this.cart.products.find((item) => item.id === product.id);
-
-      if (found) {
-        found.qty++;
+    addToCart(id) {
+      if (this.products[id]) {
+        this.products[id].quantity += 1;
       } else {
-        this.cart.products.push({ ...product, qty: 1 });
+        this.products[id] = {
+          id,
+          quantity: 1
+        };
       }
 
-      localStorage.setItem("cart", JSON.stringify(this.cart));
+      console.log(this.products);
+      localStorage.setItem("cart", JSON.stringify(this.products));
     },
 
-    removeFromCart(product) {
-      const found = this.cart.products.find((item) => item.id === product.id);
-
-      if (found) {
-        if (found.qty > 1) {
-          found.qty--;
-        } else {
-          this.cart.products = this.cart.products.filter(
-            (item) => item.id !== product.id
-          );
-        }
-
-        localStorage.setItem("cart", JSON.stringify(this.cart));
+    removeFromCart(id) {
+      if (!this.products[id]) {
+        return;
       }
+
+      this.products[id].quantity -= 1;
+
+      if (this.products[id].quantity === 0) {
+        delete this.products[id];
+      }
+
+      localStorage.setItem("cart", JSON.stringify(this.products));
     },
 
-    totalQtyItem(product) {
-      const found = this.cart.products.find((item) => item.id === product.id);
-
-      if (found) {
-        return found.qty;
+    countItem(id) {
+      if (!this.products[id]) {
+        return 0;
       }
 
-      return 0;
+      return this.products[id].quantity;
     }
   }
 });

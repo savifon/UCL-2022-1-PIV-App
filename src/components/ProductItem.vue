@@ -23,9 +23,9 @@ defineProps({
     <p>R$ {{ product.price }}</p>
 
     <div role="group">
-      <button type="button" @click="cartStore.removeFromCart(product)">-</button>
-      <input type="text" disabled :value="cartStore.totalQtyItem(product)" />
-      <button type="button" class="add" @click="cartStore.addToCart(product)">+</button>
+      <button type="button" @click="cartStore.removeFromCart(product.id)">-</button>
+      <input type="text" disabled :value="cartStore.countItem(product.id)" />
+      <button type="button" class="add" @click="cartStore.addToCart(product.id)">+</button>
     </div>
   </div>
 </template>
