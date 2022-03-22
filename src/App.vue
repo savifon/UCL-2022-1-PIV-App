@@ -20,6 +20,6 @@ const cartStore = useCartStore();
 
 <style>
 .main-app {
-  @apply w-4/5 mx-auto my-8;
+  @apply w-11/12 mx-auto my-4;
 }
 </style>

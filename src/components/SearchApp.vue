@@ -8,7 +8,7 @@ const filter = productStore.query;
 
 <template>
   <div class="search-app">
-    <input type="text" placeholder="Pesquisar produto" v-model="filter" @input="productStore.query = filter" />
+    <input type="text" placeholder="Pesquisar" v-model="filter" @input="productStore.query = filter" />
     <IconSearch class="icon" />
   </div>
 </template>
@@ -18,7 +18,7 @@ const filter = productStore.query;
   @apply flex items-center gap-2 pr-4 rounded-md bg-gray-100;
 
   > input {
-    @apply bg-gray-100 py-3 h-12 px-5 rounded-md w-96;
+    @apply bg-gray-100 py-3 h-12 px-5 rounded-md w-40;
   }
 
   > .icon {
