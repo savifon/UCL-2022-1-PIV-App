@@ -2,6 +2,7 @@
 import { useCartStore } from '../stores/cart';
 
 const cartStore = useCartStore();
+const pathImages = import.meta.env.VITE_PATH_IMAGES;
 
 defineProps({
   product: {
@@ -15,8 +16,8 @@ defineProps({
 <template>
   <div class="product-item">
     <picture>
-      <source srcset="../assets/images/product-1.jpg" type="image/jpg" />
-      <img src="../assets/images/product-1.jpg" :alt="product.name" />
+      <source :srcset="pathImages + product.image" type="image/jpg" />
+      <img :src="pathImages + product.image" :alt="product.name" />
     </picture>
 
     <p>{{ product.name }}</p>
