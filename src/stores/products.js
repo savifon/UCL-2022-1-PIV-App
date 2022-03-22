@@ -8,12 +8,20 @@ export const useProductsStore = defineStore({
 
   state: () => ({
     items: {},
-    ids: []
+    ids: [],
+    query: "gat"
   }),
 
   getters: {
     list() {
-      return this.ids.map((i) => this.items[i]);
+      if (!this.query) {
+        return this.ids.map((i) => this.items[i]);
+      } else {
+        return this.ids.map((i) => this.items[i]);
+        // return this.ids.map((i) => {
+        //   if (this.items[i].name.includes(this.query)) return this.items[i];
+        // });
+      }
     }
   },
 

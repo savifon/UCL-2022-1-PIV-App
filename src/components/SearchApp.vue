@@ -1,10 +1,13 @@
 <script setup>
+import { ref } from "vue";
 import IconSearch from "./icons/IconSearch.vue";
+
+const query = ref('');
 </script>
 
 <template>
   <div class="search-app">
-    <input type="text" placeholder="Pesquisar produto" />
+    <input type="text" placeholder="Pesquisar produto" v-model="query" />
     <IconSearch class="icon" />
   </div>
 </template>

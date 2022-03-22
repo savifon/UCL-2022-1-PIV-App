@@ -34,7 +34,6 @@ export const useCartStore = defineStore({
         };
       }
 
-      console.log(this.products);
       localStorage.setItem("cart", JSON.stringify(this.products));
     },
 
