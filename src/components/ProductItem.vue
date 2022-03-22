@@ -15,10 +15,7 @@ defineProps({
 
 <template>
   <div class="product-item">
-    <picture>
-      <source :srcset="pathImages + product.image" type="image/jpg" />
-      <img :src="pathImages + product.image" :alt="product.name" />
-    </picture>
+    <img :src="pathImages + product.image" :alt="product.name" />
 
     <p>{{ product.name }}</p>
     <p>R$ {{ product.price }}</p>
@@ -34,6 +31,10 @@ defineProps({
 <style lang="scss" scoped>
 .product-item {
   @apply w-72 flex flex-col gap-2;
+
+  > img {
+    @apply rounded-md;
+  }
 
   > p {
     @apply text-center;
