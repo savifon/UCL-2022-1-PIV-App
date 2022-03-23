@@ -11,11 +11,12 @@ productStore.fetchProducts();
 
 const cartStore = useCartStore();
 
-const currentUrlPath = computed(() => router.currentRoute.value.path);
+// const currentUrlPath = computed(() => router.currentRoute.value.path);
+// console.log(currentUrlPath)
 </script>
 
 <template>
-  <HeaderApp v-if="currentUrlPath !== '/'" :countCart="cartStore.count" />
+  <HeaderApp :countCart="cartStore.count" />
 
   <main class="main-app">
     <RouterView />
