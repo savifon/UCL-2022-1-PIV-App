@@ -1,20 +1,22 @@
 <script setup>
-import { computed } from "vue";
-import ProductList from "@/components/ProductList.vue";
-import { useProductsStore } from '@/stores/products';
-
-const productStore = useProductsStore();
-const products = computed(() => productStore.list);
+import { RouterLink } from 'vue-router';
 </script>
 
 <template>
-  <div class="product-list">
-    <ProductList :products="products" />
+  <div class="h-[90vh] flex flex-col gap-5 items-center justify-center">
+    <img src="/assets/images/logo_pra_mia.png" alt="ONG Pra Mia" class="w-2/4">
+    <p>
+      Transformando a Vida de Animais em Situação de Vulnerabilidade.
+      <br>
+      Adquira uma quantidade de alimento para pet e apoie esta causa.
+    </p>
+    <RouterLink to="/produtos">
+      <button class="btn-primary">
+        Apoiar a ONG
+      </button>
+    </RouterLink>
   </div>
 </template>
 
 <style lang="scss" scoped>
-.product-list {
-  @apply flex gap-5;
-}
 </style>

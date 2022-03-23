@@ -9,7 +9,7 @@ const productsInCart = computed(() => cartStore.list);
 
 <template>
   <div>
-    <h1>Cart</h1>
+    <h1>Cart (Em desenvolvimento!!!)</h1>
 
     <div class="product-list">
       <ProductList :products="productsInCart" />

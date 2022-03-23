@@ -11,7 +11,7 @@ const cartStore = useCartStore();
 </script>
 
 <template>
-  <HeaderApp :countCart="cartStore.count" />
+  <HeaderApp v-if="this.$route.name !== 'home'" :countCart="cartStore.count" />
 
   <main class="main-app">
     <RouterView />
@@ -20,6 +20,10 @@ const cartStore = useCartStore();
 
 <style>
 .main-app {
-  @apply w-11/12 mx-auto my-4;
+  @apply w-screen mx-auto p-4;
+}
+
+button.btn-primary {
+  @apply rounded-md px-6 py-1.5 bg-orange-900 text-white;
 }
 </style>
