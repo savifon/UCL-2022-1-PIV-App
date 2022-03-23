@@ -1,10 +1,10 @@
 <script setup>
-import { computed, ref } from "vue";
+// import { computed } from "vue";
 import { RouterView } from "vue-router";
 import HeaderApp from "@/components/HeaderApp.vue";
 import { useProductsStore } from '@/stores/products';
 import { useCartStore } from "@/stores/cart";
-import router from "./router";
+// import router from "./router";
 
 const productStore = useProductsStore();
 productStore.fetchProducts();
