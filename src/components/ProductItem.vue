@@ -28,7 +28,7 @@
 
     <div class="details">
       <p>{{ product.name }}</p>
-      <p>R$ {{ formatPrice(product.price) }}</p>
+      <p>{{ formatPrice(product.price) }}</p>
 
       <div class="group-buttons" role="group">
         <button type="button" @click="cartStore.removeFromCart(product.id)">
