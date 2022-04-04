@@ -6,16 +6,22 @@ const api = axios.create({
 
 export async function getPix(description, price) {
   try {
-    const response = await api.post("/pix", {
-      data: JSON.stringify({ nome_produto: description, valor: price }),
-      config: {
-        headers: {
-          Accept: "apllication/json",
-          "Content-Type": "application/json"
-        }
+    const response = await api.post(
+      "pix",
+      {
+        nome_produto: description,
+        valor: price
+      },
+      {
+        responseType: "blob"
       }
-    });
-    console.log(response);
+    );
+
+    const qrCodeUrl = URL.createObjectURL(
+      new Blob([response.data], { type: "image/png" })
+    );
+
+    return qrCodeUrl;
   } catch (error) {
     console.error(error);
   }
@@ -23,7 +29,7 @@ export async function getPix(description, price) {
 
 async function getJson() {
   try {
-    const response = await axios.get("/json");
+    const response = await axios.get("json");
     console.log(response);
   } catch (error) {
     console.error(error);
