@@ -34,11 +34,11 @@ export const useCartStore = defineStore({
           id: purchase.id,
           image: stock.items[purchase.id].image,
           name: stock.items[purchase.id].name,
-          qty: purchase.qty,
-          cost: purchase.qty * stock.items[purchase.id].price,
+          quantity: purchase.quantity,
+          price: purchase.quantity * stock.items[purchase.id].price
         };
       });
-    },
+    }
   },
 
   actions: {
