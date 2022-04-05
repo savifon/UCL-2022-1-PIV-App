@@ -1,23 +1,22 @@
 <script setup>
-import { RouterLink } from "vue-router";
-// import SearchApp from "@/components/SearchApp.vue";
-import IconShoppingBasket from "@/components/icons/IconShoppingBasket.vue";
+  import { RouterLink } from "vue-router";
+  // import SearchApp from "@/components/SearchApp.vue";
+  import IconShoppingBasket from "@/components/icons/IconShoppingBasket.vue";
 
-defineProps({
-  countCart: Number
-})
+  defineProps({
+    countCart: Number
+  });
 </script>
 
 <template>
   <header class="header-app">
     <div>
-      <RouterLink class="logo" to="/">
-        PI-V App
-      </RouterLink>
+      <RouterLink class="logo" to="/"> PI-V App </RouterLink>
 
       <div>
         <!-- <SearchApp /> -->
         <nav>
+          <RouterLink to="/produtos"> Produtos </RouterLink>
           <RouterLink to="/pedido">
             Minha cesta ({{ countCart }})
             <IconShoppingBasket />
@@ -29,27 +28,27 @@ defineProps({
 </template>
 
 <style lang="scss" scoped>
-.header-app {
-  @apply flex justify-center shadow-lg;
-
-  > div {
-    @apply flex justify-between items-center w-11/12 py-1;
-
-    > .logo {
-      @apply text-2xl font-semibold text-orange-900;
-    }
+  .header-app {
+    @apply flex justify-center shadow-lg;
 
     > div {
-      @apply flex items-center gap-2;
+      @apply flex justify-between items-center w-11/12 py-1;
 
-      > nav {
-        @apply flex gap-2;
+      > .logo {
+        @apply text-2xl font-semibold text-orange-900;
+      }
 
-        > a {
-          @apply flex items-center gap-2 py-3 h-12 px-2 rounded-md hover:bg-gray-100 transition-all;
+      > div {
+        @apply flex items-center gap-2;
+
+        > nav {
+          @apply flex gap-2;
+
+          > a {
+            @apply flex items-center gap-2 py-3 h-12 px-2 rounded-md hover:bg-gray-100 transition-all;
+          }
         }
       }
     }
   }
-}
 </style>

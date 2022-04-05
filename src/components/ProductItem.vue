@@ -77,7 +77,7 @@
   }
 
   .product-item-cart {
-    @apply flex-row items-center;
+    @apply flex-row w-full items-center;
 
     > img {
       @apply w-40 h-auto;

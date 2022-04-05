@@ -24,7 +24,7 @@
 
 <style lang="scss">
   .main-app {
-    @apply w-screen mx-auto p-4;
+    @apply w-11/12 mx-auto py-4;
   }
 
   button {

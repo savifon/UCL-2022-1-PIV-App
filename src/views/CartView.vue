@@ -3,14 +3,14 @@
   import { useCartStore } from "@/stores/cart";
   import ModalApp from "@/components/ModalApp.vue";
   import ProductList from "@/components/ProductList.vue";
-  import { getPix } from "@/services/api";
+  import { formatPrice } from "@/utils/format";
 
   const cartStore = useCartStore();
   const productsInCart = computed(() => cartStore.list);
-  const priceCart = computed(() => cartStore.priceTotal);
+  const priceTotal = computed(() => cartStore.priceTotal);
 
-  const getQrCode = async (product, price) => {
-    modal.qrCodeUrl = await getPix(product, price);
+  const checkout = async () => {
+    modal.qrCodeUrl = await cartStore.checkout();
     modal.open = true;
   };
 
@@ -29,25 +29,38 @@
     :text="modal.text"
     :image="modal.qrCodeUrl"
   />
+
   <div class="cart-container">
-    <h1>Sua cesta</h1>
-
+    <h2>Sua cesta</h2>
     <div class="product-list">
-      <ProductList :products="productsInCart" />
+      <template v-if="productsInCart.length > 0">
+        <ProductList :products="productsInCart" />
+        <p>
+          Total:
+          <span class="price">{{ formatPrice(priceTotal) }}</span>
+        </p>
+        <button class="btn-primary" @click="checkout">Confirmar pedido</button>
+      </template>
+      <template v-else>
+        <p>Sua cesta está vazia</p>
+      </template>
     </div>
-
-    <button class="btn-primary" @click="getQrCode('Pedido', priceCart)">
-      Confirmar pedido
-    </button>
   </div>
 </template>
 
 <style lang="scss" scoped>
   .cart-container {
     @apply flex flex-col items-start gap-4;
-  }
 
+    > h2 {
+      @apply text-xl font-semibold;
+    }
+  }
   .product-list {
-    @apply flex flex-col gap-5;
+    @apply flex flex-col items-start gap-5 w-full;
+
+    .price {
+      @apply text-lg font-semibold;
+    }
   }
 </style>

@@ -10,7 +10,7 @@ export async function getPix(description, price) {
       "pix",
       {
         nome_produto: description,
-        valor: price
+        valor: price.toFixed(2)
       },
       {
         responseType: "blob"

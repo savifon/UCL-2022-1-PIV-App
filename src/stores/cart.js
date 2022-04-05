@@ -1,5 +1,7 @@
+import { ref } from "vue";
 import { defineStore } from "pinia";
 import { useProductsStore } from "./products";
+import { getPix } from "@/services/api";
 
 export const useCartStore = defineStore({
   id: "cart",
@@ -56,9 +58,7 @@ export const useCartStore = defineStore({
     },
 
     removeFromCart(id) {
-      if (!this.products[id]) {
-        return;
-      }
+      if (!this.products[id]) return;
 
       this.products[id].quantity -= 1;
 
@@ -69,10 +69,25 @@ export const useCartStore = defineStore({
       localStorage.setItem("cart", JSON.stringify(this.products));
     },
 
-    countItem(id) {
-      if (!this.products[id]) {
-        return 0;
+    async checkout() {
+      if (this.count < 0) return;
+
+      const urlQrCode = ref();
+
+      try {
+        urlQrCode.value = await getPix(`Pedido ${new Date()}`, this.priceTotal);
+      } catch (error) {
+        console.error(error);
+        return;
       }
+
+      this.products = {};
+      localStorage.removeItem("cart");
+      return urlQrCode.value;
+    },
+
+    countItem(id) {
+      if (!this.products[id]) return 0;
 
       return this.products[id].quantity;
     }
