@@ -17,11 +17,9 @@ export async function getPix(description, price) {
       }
     );
 
-    const qrCodeUrl = URL.createObjectURL(
+    return URL.createObjectURL(
       new Blob([response.data], { type: "image/png" })
     );
-
-    return qrCodeUrl;
   } catch (error) {
     console.error(error);
   }

@@ -15,7 +15,6 @@
           </svg>
         </template>
         <template v-else>
-          <!-- <span class="btn-close" @click="toggleModal">&times;</span> -->
           <h2 v-if="modal.title" class="title">{{ modal.title }}</h2>
           <p v-if="modal.text" class="text">{{ modal.text }}</p>
           <img v-if="modal.image" :src="modal.image" alt="qr code" />
@@ -61,10 +60,6 @@
 
     .modal-content {
       @apply relative min-w-min max-w-[90%] py-10 px-10 bg-white rounded-md flex flex-col gap-6 justify-center;
-
-      // .btn-close {
-      //   @apply absolute top-1 right-3 z-10 text-2xl p-1 cursor-pointer;
-      // }
 
       .title {
         @apply text-3xl;
