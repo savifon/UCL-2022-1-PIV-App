@@ -29,22 +29,26 @@
 </script>
 
 <template>
-  <ModalApp :modal="modal" @action-primary="finishPurchase" />
+  <div>
+    <ModalApp :modal="modal" @action-primary="finishPurchase" />
 
-  <div class="cart-container">
-    <h2>Sua cesta</h2>
-    <div class="product-list">
-      <template v-if="productsInCart.length > 0">
-        <ProductList :products="productsInCart" />
-        <p>
-          Total:
-          <span class="price">{{ formatPrice(priceTotal) }}</span>
-        </p>
-        <button class="btn-primary" @click="checkout">Confirmar pedido</button>
-      </template>
-      <template v-else>
-        <p>Sua cesta está vazia</p>
-      </template>
+    <div class="cart-container">
+      <h2>Sua cesta</h2>
+      <div class="product-list">
+        <template v-if="productsInCart.length > 0">
+          <ProductList :products="productsInCart" />
+          <p>
+            Total:
+            <span class="price">{{ formatPrice(priceTotal) }}</span>
+          </p>
+          <button class="btn-primary" @click="checkout">
+            Confirmar pedido
+          </button>
+        </template>
+        <template v-else>
+          <p>Sua cesta está vazia</p>
+        </template>
+      </div>
     </div>
   </div>
 </template>
