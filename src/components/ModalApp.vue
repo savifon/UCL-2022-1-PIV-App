@@ -1,16 +1,25 @@
 <template>
-  <Teleport v-if="open" to="body">
-    <div class="modal-container">
+  <Teleport v-if="modal.open" to="body">
+    <div class="modal-container" @click.self="toggleModal">
       <div class="modal-content">
-        <h2 v-if="props.title" class="title">{{ props.title }}</h2>
-        <p v-if="props.text" class="text">{{ props.text }}</p>
-        <img v-if="image" :src="image" alt="qr code" />
+        <!-- <span class="btn-close" @click="toggleModal">&times;</span> -->
+        <h2 v-if="modal.title" class="title">{{ modal.title }}</h2>
+        <p v-if="modal.text" class="text">{{ modal.text }}</p>
+        <img v-if="modal.image" :src="modal.image" alt="qr code" />
         <div class="buttons">
-          <button v-if="action" class="btn-secondary" @click="action">
-            Cancelar
+          <button
+            v-if="modal.actionSecondary"
+            class="btn-secondary"
+            @click="$emit('actionSecondary')"
+          >
+            {{ modal.actionSecondary }}
           </button>
-          <button v-if="action" class="btn-primary" @click="action">
-            Confirmar
+          <button
+            v-if="modal.actionPrimary"
+            class="btn-primary"
+            @click="$emit('actionPrimary')"
+          >
+            {{ modal.actionPrimary }}
           </button>
         </div>
       </div>
@@ -19,32 +28,29 @@
 </template>
 
 <script setup>
-  import { computed } from "vue";
+  import { ref } from "vue";
+
+  defineEmits(["actionPrimary", "actionSecondary"]);
 
   const props = defineProps({
-    open: {
-      type: Boolean,
-      default: true
-    },
-    title: {
-      type: String,
-      required: true
-    },
-    text: { type: String },
-    image: { type: String },
-    action: { type: Function }
+    modal: { type: Object }
   });
 
-  const open = computed(() => props.open);
-  const image = computed(() => props.image);
+  const modal = ref(props.modal);
+
+  const toggleModal = () => (modal.open = !modal.open);
 </script>
 
 <style scoped lang="scss">
   .modal-container {
-    @apply fixed flex h-screen w-screen top-0 left-0 items-center justify-center bg-orange-900 bg-opacity-50 z-10;
+    @apply fixed flex h-screen w-screen top-0 left-0 items-center justify-center bg-orange-900 backdrop-blur-sm bg-opacity-50 z-10;
 
     .modal-content {
-      @apply w-96 max-w-[95%] p-4 bg-white rounded-md flex flex-col gap-2;
+      @apply relative min-w-min max-w-[90%] py-10 px-10 bg-white rounded-md flex flex-col gap-6 justify-center;
+
+      // .btn-close {
+      //   @apply absolute top-1 right-3 z-10 text-2xl p-1 cursor-pointer;
+      // }
 
       .title {
         @apply text-3xl;

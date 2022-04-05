@@ -1,5 +1,6 @@
 <script setup>
   import { computed, reactive } from "vue";
+  import router from "@/router";
   import { useCartStore } from "@/stores/cart";
   import ModalApp from "@/components/ModalApp.vue";
   import ProductList from "@/components/ProductList.vue";
@@ -10,25 +11,25 @@
   const priceTotal = computed(() => cartStore.priceTotal);
 
   const checkout = async () => {
-    modal.qrCodeUrl = await cartStore.checkout();
+    modal.image = await cartStore.checkout();
     modal.open = true;
   };
 
   const modal = reactive({
     open: false,
-    title: "Confirme o pagamento",
     text: "Leia o QRCode abaixo no seu app de pagamento",
-    qrCodeUrl: ""
+    image: "",
+    actionPrimary: "Concluído"
   });
+
+  const finishPurchase = () => {
+    modal.open = false;
+    router.push("/produtos");
+  };
 </script>
 
 <template>
-  <ModalApp
-    :open="modal.open"
-    :title="modal.title"
-    :text="modal.text"
-    :image="modal.qrCodeUrl"
-  />
+  <ModalApp :modal="modal" @action-primary="finishPurchase" />
 
   <div class="cart-container">
     <h2>Sua cesta</h2>
