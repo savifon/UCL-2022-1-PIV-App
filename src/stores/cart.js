@@ -9,7 +9,8 @@ export const useCartStore = defineStore({
   state: () => ({
     products: localStorage.getItem("cart")
       ? JSON.parse(localStorage.getItem("cart"))
-      : {}
+      : {},
+    loading: false
   }),
 
   getters: {
@@ -72,6 +73,7 @@ export const useCartStore = defineStore({
     async checkout() {
       if (this.count < 0) return;
 
+      this.loading = true;
       const urlQrCode = ref();
 
       try {
@@ -81,6 +83,7 @@ export const useCartStore = defineStore({
         return;
       }
 
+      this.loading = false;
       this.products = {};
       localStorage.removeItem("cart");
       return urlQrCode.value;
