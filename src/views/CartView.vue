@@ -1,5 +1,5 @@
 <script setup>
-  import { computed, reactive, ref } from "vue";
+  import { computed, reactive } from "vue";
   import router from "@/router";
   import { useCartStore } from "@/stores/cart";
   import ModalApp from "@/components/ModalApp.vue";

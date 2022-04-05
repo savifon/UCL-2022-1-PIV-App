@@ -1,6 +1,5 @@
 <script setup>
   import { RouterLink } from "vue-router";
-  // import SearchApp from "@/components/SearchApp.vue";
   import IconShoppingBasket from "@/components/icons/IconShoppingBasket.vue";
 
   defineProps({
@@ -14,7 +13,6 @@
       <RouterLink class="logo" to="/"> PI-V App </RouterLink>
 
       <div>
-        <!-- <SearchApp /> -->
         <nav>
           <RouterLink to="/produtos"> Produtos </RouterLink>
           <RouterLink to="/pedido">
