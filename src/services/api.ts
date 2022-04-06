@@ -4,7 +4,7 @@ const api = axios.create({
   baseURL: "https://apialimentadorautomatico.herokuapp.com/"
 });
 
-export async function getPix(description, price) {
+export async function getPix(description: string, price: number) {
   try {
     const response = await api.post(
       "pix",

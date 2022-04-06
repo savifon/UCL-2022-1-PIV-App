@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
   import { computed, reactive } from "vue";
   import router from "@/router";
   import { useCartStore } from "@/stores/cart";
