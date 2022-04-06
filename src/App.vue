@@ -1,4 +1,4 @@
-<script setup>
+<script lang="ts" setup>
   import { computed } from "vue";
   import { RouterView } from "vue-router";
   import HeaderApp from "@/components/HeaderApp.vue";

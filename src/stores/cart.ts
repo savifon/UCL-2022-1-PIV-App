@@ -45,7 +45,7 @@ export const useCartStore = defineStore({
   },
 
   actions: {
-    addToCart(id) {
+    addToCart(id: number) {
       if (this.products[id]) {
         this.products[id].quantity += 1;
       } else {
@@ -58,7 +58,7 @@ export const useCartStore = defineStore({
       localStorage.setItem("cart", JSON.stringify(this.products));
     },
 
-    removeFromCart(id) {
+    removeFromCart(id: number) {
       if (!this.products[id]) return;
 
       this.products[id].quantity -= 1;
@@ -89,7 +89,7 @@ export const useCartStore = defineStore({
       return urlQrCode.value;
     },
 
-    countItem(id) {
+    countItem(id: number) {
       if (!this.products[id]) return 0;
 
       return this.products[id].quantity;

@@ -1,10 +1,10 @@
-<script setup>
-import { computed } from "vue";
-import ProductList from "@/components/ProductList.vue";
-import { useProductsStore } from '@/stores/products';
+<script lang="ts" setup>
+  import { computed } from "vue";
+  import ProductList from "@/components/ProductList.vue";
+  import { useProductsStore } from "@/stores/products";
 
-const productStore = useProductsStore();
-const products = computed(() => productStore.list);
+  const productStore = useProductsStore();
+  const products = computed(() => productStore.list);
 </script>
 
 <template>
@@ -14,7 +14,7 @@ const products = computed(() => productStore.list);
 </template>
 
 <style lang="scss" scoped>
-.product-list {
-  @apply flex gap-5;
-}
+  .product-list {
+    @apply flex gap-5;
+  }
 </style>

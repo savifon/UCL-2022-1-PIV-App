@@ -1,9 +1,9 @@
-<script setup>
-import ProductItem from "@/components/ProductItem.vue";
+<script lang="ts" setup>
+  import ProductItem from "@/components/ProductItem.vue";
 
-defineProps({
-  products: Array,
-});
+  defineProps({
+    products: Array
+  });
 </script>
 
 <template>
