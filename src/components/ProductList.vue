@@ -1,12 +1,6 @@
 <script lang="ts" setup>
 import ProductItem from "@/components/ProductItem.vue";
-
-type Product = {
-  id: number;
-  image: string;
-  name: string;
-  price: number;
-};
+import { Product } from "@/types/types";
 
 defineProps<{
   products: Product[];

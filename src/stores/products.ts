@@ -1,13 +1,7 @@
 import { defineStore } from "pinia";
+import { Product } from "@/types/types";
 
 const productsStoreUrl = import.meta.env.VITE_GIT_REPO;
-
-type Product = {
-  id: number,
-  image: string,
-  name: string,
-  price: number
-}
 
 export const useProductsStore = defineStore({
   id: "products",

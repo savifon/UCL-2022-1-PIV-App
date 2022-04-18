@@ -3,13 +3,11 @@ import { computed } from "vue";
 import { useCartStore } from "@/stores/cart";
 import { formatPrice } from "@/utils/format";
 import router from "@/router";
+import { Product } from "@/types/types";
 
-const product = defineProps({
-  id: Number,
-  image: String,
-  name: String,
-  price: Number
-});
+defineProps<{
+  product: Product;
+}>();
 
 const cartStore = useCartStore();
 const pathImages = `${import.meta.env.VITE_GIT_REPO}${
