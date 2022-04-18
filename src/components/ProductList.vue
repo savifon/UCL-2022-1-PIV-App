@@ -1,9 +1,16 @@
 <script lang="ts" setup>
-  import ProductItem from "@/components/ProductItem.vue";
+import ProductItem from "@/components/ProductItem.vue";
 
-  defineProps({
-    products: Array
-  });
+type Product = {
+  id: number;
+  image: string;
+  name: string;
+  price: number;
+};
+
+defineProps<{
+  products: Product[];
+}>();
 </script>
 
 <template>

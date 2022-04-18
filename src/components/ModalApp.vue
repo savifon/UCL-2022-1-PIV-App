@@ -1,3 +1,27 @@
+<script lang="ts" setup>
+import { reactive } from "vue";
+
+defineEmits(["actionPrimary", "actionSecondary"]);
+
+type Modal = {
+  open: boolean;
+  loading: boolean;
+  title?: string;
+  text: string;
+  image: string;
+  actionPrimary: string;
+  actionSecondary?: string;
+};
+
+const props = defineProps<{
+  modal: Modal;
+}>();
+
+const modal = reactive(props.modal);
+
+const toggleModal = () => (modal.open = !modal.open);
+</script>
+
 <template>
   <Teleport v-if="modal.open" to="body">
     <div class="modal-container" @click.self="toggleModal">
@@ -40,42 +64,28 @@
   </Teleport>
 </template>
 
-<script lang="ts" setup>
-  import { ref } from "vue";
-
-  defineEmits(["actionPrimary", "actionSecondary"]);
-
-  const props = defineProps({
-    modal: { type: Object }
-  });
-
-  const modal = ref(props.modal);
-
-  const toggleModal = () => (modal.open = !modal.open);
-</script>
-
 <style scoped lang="scss">
-  .modal-container {
-    @apply fixed flex h-screen w-screen top-0 left-0 items-center justify-center bg-orange-900 backdrop-blur-sm bg-opacity-50 z-10;
+.modal-container {
+  @apply fixed flex h-screen w-screen top-0 left-0 items-center justify-center bg-orange-900 backdrop-blur-sm bg-opacity-50 z-10;
 
-    .modal-content {
-      @apply relative min-w-min max-w-[90%] py-10 px-10 bg-white rounded-md flex flex-col gap-6 justify-center;
+  .modal-content {
+    @apply relative min-w-min max-w-[90%] py-10 px-10 bg-white rounded-md flex flex-col gap-6 justify-center;
 
-      .title {
-        @apply text-3xl;
-      }
+    .title {
+      @apply text-3xl;
+    }
 
-      img {
-        @apply w-56 mx-auto;
-      }
+    img {
+      @apply w-56 mx-auto;
+    }
 
-      .buttons {
-        @apply flex gap-4 justify-between;
+    .buttons {
+      @apply flex gap-4 justify-between;
 
-        button {
-          @apply w-full;
-        }
+      button {
+        @apply w-full;
       }
     }
   }
+}
 </style>

@@ -1,22 +1,22 @@
 <script lang="ts" setup>
-  import { computed } from "vue";
-  import { useCartStore } from "@/stores/cart";
-  import { formatPrice } from "@/utils/format";
-  import router from "@/router";
+import { computed } from "vue";
+import { useCartStore } from "@/stores/cart";
+import { formatPrice } from "@/utils/format";
+import router from "@/router";
 
-  defineProps({
-    product: {
-      image: String,
-      name: String,
-      price: Number
-    }
-  });
+const product = defineProps({
+  id: Number,
+  image: String,
+  name: String,
+  price: Number
+});
 
-  const cartStore = useCartStore();
-  const pathImages =
-    import.meta.env.VITE_GIT_REPO + import.meta.env.VITE_GIT_PATH_IMAGES;
+const cartStore = useCartStore();
+const pathImages = `${import.meta.env.VITE_GIT_REPO}${
+  import.meta.env.VITE_GIT_PATH_IMAGES
+}`;
 
-  const currentUrlPath = computed(() => router.currentRoute.value.path);
+const currentUrlPath = computed(() => router.currentRoute.value.path);
 </script>
 
 <template>
@@ -48,55 +48,55 @@
 </template>
 
 <style lang="scss" scoped>
-  .product-item {
-    @apply w-72 flex-col flex gap-2;
+.product-item {
+  @apply w-80 flex-col flex gap-2;
 
-    > img {
-      @apply rounded-md;
-    }
-
-    p {
-      @apply text-center;
-    }
-
-    .group-buttons {
-      @apply inline-flex;
-
-      button {
-        @apply rounded-l-md rounded-r-none inline-block px-6 py-1.5 bg-orange-100 text-white w-1/4 text-center;
-      }
-
-      button.add {
-        @apply bg-orange-900 rounded-l-none rounded-r-md;
-      }
-
-      input {
-        @apply text-center w-2/4 bg-gray-100;
-      }
-    }
+  > img {
+    @apply rounded-md;
   }
 
-  .product-item-cart {
-    @apply flex-row w-full items-center;
+  p {
+    @apply text-center;
+  }
 
-    > img {
-      @apply w-40 h-auto;
+  .group-buttons {
+    @apply inline-flex;
+
+    button {
+      @apply rounded-l-md rounded-r-none inline-block bg-orange-400 text-white text-center;
     }
 
-    p {
-      @apply text-left whitespace-nowrap;
+    button.add {
+      @apply bg-orange-900 rounded-l-none rounded-r-md;
     }
 
-    .group-buttons {
-      @apply flex;
-
-      button {
-        @apply w-16;
-      }
-
-      input {
-        @apply w-16;
-      }
+    input {
+      @apply text-center w-2/4 bg-gray-100;
     }
   }
+}
+
+.product-item-cart {
+  @apply flex-row w-full items-center;
+
+  > img {
+    @apply w-48 h-auto;
+  }
+
+  p {
+    @apply text-left whitespace-nowrap;
+  }
+
+  .group-buttons {
+    @apply flex;
+
+    button {
+      @apply w-16;
+    }
+
+    input {
+      @apply w-16;
+    }
+  }
+}
 </style>

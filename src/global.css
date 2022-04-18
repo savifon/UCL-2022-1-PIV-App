@@ -27,7 +27,7 @@ button {
 }
 
 button {
-  @apply rounded-md px-6 py-1.5;
+  @apply rounded-md px-9 py-3;
 
   cursor: pointer;
 }
