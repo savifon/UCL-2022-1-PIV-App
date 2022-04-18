@@ -1,17 +1,8 @@
 <script lang="ts" setup>
 import { reactive } from "vue";
+import { Modal } from "@/types/types";
 
 defineEmits(["actionPrimary", "actionSecondary"]);
-
-type Modal = {
-  open: boolean;
-  loading: boolean;
-  title?: string;
-  text: string;
-  image: string;
-  actionPrimary: string;
-  actionSecondary?: string;
-};
 
 const props = defineProps<{
   modal: Modal;
