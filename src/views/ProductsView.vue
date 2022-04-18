@@ -15,6 +15,6 @@
 
 <style lang="scss" scoped>
   .product-list {
-    @apply flex gap-5;
+    @apply flex justify-center items-center h-[80vh] gap-10;
   }
 </style>
