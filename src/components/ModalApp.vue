@@ -1,6 +1,14 @@
 <script lang="ts" setup>
-import { reactive } from "vue";
+import { onMounted, reactive } from "vue";
 import { Modal } from "@/types/types";
+import { io } from "@/assets/js/socket.io.esm.min"
+import axios from "axios"
+import { useRouter } from "vue-router";
+
+const router = useRouter()
+const heroku = "https://pivpix.herokuapp.com"
+const local = "http://localhost:5587/liberaRacao"
+const socket = io(heroku)
 
 defineEmits(["actionPrimary", "actionSecondary"]);
 
@@ -11,6 +19,41 @@ const props = defineProps<{
 const modal = reactive(props.modal);
 
 const toggleModal = () => (modal.open = !modal.open);
+
+onMounted(() => {
+  const transacao = window.sessionStorage.getItem("pixid")
+
+    socket.on("connect", () => {
+      console.log('Conectado. Aguardando pagamento...')
+    })
+
+    socket.on("pagamento", (data) => {
+      // console.log("Recebendo dados da Gerencianet");
+      // console.log(data);
+      // console.log();
+      // console.log("Log da Minha Transacao Original: ");
+      // console.log(transacao);
+      // console.log();
+
+      const meupagamento =  data.pix.find( item => item.txid === transacao )
+
+      if(meupagamento){
+        console.log("Pagamento recebido. Redirecionando...");
+
+        axios.post(local, {
+          liberaRacao: true,
+        })
+          .then(function (response) {
+            // console.log(response);
+          })
+          .catch(function (error) {
+            // console.log(error);
+          });
+      }
+
+      router.push('/produtos')
+    })
+})
 </script>
 
 <template>

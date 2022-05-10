@@ -1,34 +1,24 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 const api = axios.create({
-  baseURL: "https://apialimentadorautomatico.herokuapp.com/"
+  baseURL: "https://pivpix.herokuapp.com/",
+  headers: {
+    'Content-Type': 'application/json'
+  }
 });
 
 export async function getPix(description: string, price: number) {
   try {
-    const response = await api.post(
-      "pix",
+    const response = await api.post<AxiosResponse>(
+      "criar-pagamento",
       {
         nome_produto: description,
         valor: price.toFixed(2)
-      },
-      {
-        responseType: "blob"
       }
     );
-
-    return URL.createObjectURL(
-      new Blob([response.data], { type: "image/png" })
-    );
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-async function getJson() {
-  try {
-    const response = await axios.get("json");
-    console.log(response);
+    
+    window.sessionStorage.setItem('pixid', response.data.pix.txid)
+    return response.data.qrcode.imagemQrcode
   } catch (error) {
     console.error(error);
   }
