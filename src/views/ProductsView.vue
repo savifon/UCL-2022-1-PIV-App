@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-  import { computed } from "vue";
-  import ProductList from "@/components/ProductList.vue";
-  import { useProductsStore } from "@/stores/products";
+import { computed } from "vue";
+import ProductList from "@/components/ProductList.vue";
+import { useProductsStore } from "@/stores/products";
 
-  const productStore = useProductsStore();
-  const products = computed(() => productStore.list);
+const productStore = useProductsStore();
+const products = computed(() => productStore.list);
 </script>
 
 <template>
@@ -14,7 +14,7 @@
 </template>
 
 <style lang="scss" scoped>
-  .product-list {
-    @apply flex justify-center items-center h-[80vh] gap-10;
-  }
+.product-list {
+  @apply flex justify-center items-center h-[75vh] gap-10;
+}
 </style>

@@ -2,6 +2,7 @@
 import { computed } from "vue";
 import { RouterView } from "vue-router";
 import HeaderApp from "@/components/HeaderApp.vue";
+import FooterApp from "@/components/FooterApp.vue";
 import { useProductsStore } from "@/stores/products";
 import { useCartStore } from "@/stores/cart";
 import router from "./router";
@@ -24,6 +25,8 @@ const currentUrlPath = computed(() => router.currentRoute.value.path);
       </transition>
     </RouterView>
   </main>
+
+  <FooterApp v-if="currentUrlPath !== '/'" />
 </template>
 
 <style lang="scss">
