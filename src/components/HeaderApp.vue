@@ -3,7 +3,7 @@ import { RouterLink } from "vue-router";
 import IconShoppingBasket from "@/components/icons/IconShoppingBasket.vue";
 
 defineProps({
-  countCart: Number
+  countCart: Number,
 });
 </script>
 

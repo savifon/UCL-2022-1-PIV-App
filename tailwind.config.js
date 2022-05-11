@@ -5,19 +5,19 @@ module.exports = {
       orange: {
         900: "#FF621D",
         400: "#f7ccb9",
-        100: "#FFECE4"
+        100: "#FFECE4",
       },
       gray: {
         100: "#F3F3F3",
-        700: "#737373"
+        700: "#737373",
       },
       black: "#151515",
-      white: "#FFFFFF"
+      white: "#FFFFFF",
     },
     fontFamily: {
-      sans: ["Rubik", "sans-serif"]
+      sans: ["Rubik", "sans-serif"],
     },
-    extend: {}
+    extend: {},
   },
-  plugins: []
+  plugins: [],
 };

@@ -15,7 +15,7 @@
 </template>
 
 <style scoped>
-  svg > path {
-    fill: theme("colors.orange.900");
-  }
+svg > path {
+  fill: theme("colors.orange.900");
+}
 </style>

@@ -1,33 +1,33 @@
 <script lang="ts" setup>
-  import { computed, reactive } from "vue";
-  import router from "@/router";
-  import { useCartStore } from "@/stores/cart";
-  import ModalApp from "@/components/ModalApp.vue";
-  import ProductList from "@/components/ProductList.vue";
-  import { formatPrice } from "@/utils/format";
+import { computed, reactive } from "vue";
+import router from "@/router";
+import { useCartStore } from "@/stores/cart";
+import ModalApp from "@/components/ModalApp.vue";
+import ProductList from "@/components/ProductList.vue";
+import { formatPrice } from "@/utils/format";
 
-  const cartStore = useCartStore();
-  const productsInCart = computed(() => cartStore.list);
-  const priceTotal = computed(() => cartStore.priceTotal);
-  const loading = computed(() => cartStore.loading);
+const cartStore = useCartStore();
+const productsInCart = computed(() => cartStore.list);
+const priceTotal = computed(() => cartStore.priceTotal);
+const loading = computed(() => cartStore.loading);
 
-  const checkout = async () => {
-    modal.open = true;
-    modal.image = await cartStore.checkout();
-  };
+const checkout = async () => {
+  modal.open = true;
+  modal.image = await cartStore.checkout();
+};
 
-  const modal = reactive({
-    open: false,
-    loading: loading,
-    text: "Leia o QRCode abaixo no seu app de pagamento",
-    image: "",
-    actionPrimary: "Concluído"
-  });
+const modal = reactive({
+  open: false,
+  loading: loading,
+  text: "Leia o QRCode abaixo no seu app de pagamento",
+  image: "",
+  actionPrimary: "Concluído",
+});
 
-  const finishPurchase = () => {
-    modal.open = false;
-    router.push("/produtos");
-  };
+const finishPurchase = () => {
+  modal.open = false;
+  router.push("/produtos");
+};
 </script>
 
 <template>
@@ -56,18 +56,18 @@
 </template>
 
 <style lang="scss" scoped>
-  .cart-container {
-    @apply flex flex-col items-start gap-4;
+.cart-container {
+  @apply flex flex-col items-start gap-4;
 
-    > h2 {
-      @apply text-xl font-semibold;
-    }
+  > h2 {
+    @apply text-xl font-semibold;
   }
-  .product-list {
-    @apply flex flex-col items-start gap-5 w-full;
+}
+.product-list {
+  @apply flex flex-col items-start gap-5 w-full;
 
-    .price {
-      @apply text-lg font-semibold;
-    }
+  .price {
+    @apply text-lg font-semibold;
   }
+}
 </style>
