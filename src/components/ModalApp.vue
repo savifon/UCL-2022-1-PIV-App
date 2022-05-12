@@ -34,12 +34,15 @@ onMounted(() => {
     if (meupagamento) {
       console.log("Pagamento recebido");
 
+      const cart = JSON.parse(localStorage.getItem("cart"));
+
       axios
         .post(raspberryUrl, {
-          liberaRacao: true,
+          cart,
         })
         .then(() => {
           console.log("Comando enviado para a RaspberryPi");
+          localStorage.removeItem("cart");
         })
         .catch((error) => {
           console.error("Erro no envio de comando para a RaspberryPi", error);
@@ -47,7 +50,7 @@ onMounted(() => {
     }
 
     console.log("Pagamento recebido. Redirecionando...");
-    router.push("/produtos");
+    router.push("/");
   });
 });
 </script>

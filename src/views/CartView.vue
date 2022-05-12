@@ -26,7 +26,7 @@ const modal = reactive({
 
 const finishPurchase = () => {
   modal.open = false;
-  router.push("/produtos");
+  router.push("/");
 };
 </script>
 

@@ -10,7 +10,7 @@ export const useCartStore = defineStore({
     products: localStorage.getItem("cart")
       ? JSON.parse(localStorage.getItem("cart"))
       : {},
-    loading: false
+    loading: false,
   }),
 
   getters: {
@@ -38,10 +38,10 @@ export const useCartStore = defineStore({
           image: stock.items[purchase.id].image,
           name: stock.items[purchase.id].name,
           quantity: purchase.quantity,
-          price: purchase.quantity * stock.items[purchase.id].price
+          price: purchase.quantity * stock.items[purchase.id].price,
         };
       });
-    }
+    },
   },
 
   actions: {
@@ -51,7 +51,7 @@ export const useCartStore = defineStore({
       } else {
         this.products[id] = {
           id,
-          quantity: 1
+          quantity: 1,
         };
       }
 
@@ -85,7 +85,7 @@ export const useCartStore = defineStore({
 
       this.loading = false;
       this.products = {};
-      localStorage.removeItem("cart");
+      // localStorage.removeItem("cart");
       return urlQrCode.value;
     },
 
@@ -93,6 +93,6 @@ export const useCartStore = defineStore({
       if (!this.products[id]) return 0;
 
       return this.products[id].quantity;
-    }
-  }
+    },
+  },
 });
