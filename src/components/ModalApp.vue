@@ -20,16 +20,17 @@ const socket = io(herokuUrl);
 const raspberryUrl = "http://localhost:5587/liberaRacao";
 
 onMounted(() => {
-  const transacaoId = window.sessionStorage.getItem("pixid");
-
   socket.on("connect", () => {
     console.log("Conectado. Aguardando pagamento...");
   });
 
-  socket.on("pagamento", (data) => {
+  socket.on("pagamento", (data: { pix: any[] }) => {
+    const transacaoId = window.localStorage.getItem("pixid");
     console.log("Recebendo dados da GerenciaNet");
 
-    const meupagamento = data.pix.find((item) => item.txid === transacaoId);
+    const meupagamento = data.pix.find(
+      (item: { txid: string }) => item.txid === transacaoId
+    );
 
     if (meupagamento) {
       console.log("Pagamento recebido");
@@ -39,18 +40,21 @@ onMounted(() => {
       axios
         .post(raspberryUrl, {
           cart,
+          meupagamento,
+          time: new Date(),
         })
         .then(() => {
           console.log("Comando enviado para a RaspberryPi");
-          localStorage.removeItem("cart");
+          console.log("Redirecionando...");
+          localStorage.removeItem("pixid");
+          router.push("/");
         })
         .catch((error) => {
           console.error("Erro no envio de comando para a RaspberryPi", error);
         });
-    }
 
-    console.log("Pagamento recebido. Redirecionando...");
-    router.push("/");
+      localStorage.removeItem("cart");
+    }
   });
 });
 </script>

@@ -46,12 +46,15 @@ export const useCartStore = defineStore({
 
   actions: {
     addToCart(id: number) {
+      const products = useProductsStore();
       if (this.products[id]) {
         this.products[id].quantity += 1;
       } else {
         this.products[id] = {
           id,
           quantity: 1,
+          name: products.items[id].name,
+          price: products.items[id].price,
         };
       }
 
