@@ -39,6 +39,8 @@ onMounted(() => {
       axios
         .post(raspberryUrl, {
           cart,
+          data,
+          time: new Date()
         })
         .then(() => {
           console.log("Comando enviado para a RaspberryPi");
