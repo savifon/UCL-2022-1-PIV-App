@@ -15,7 +15,7 @@ const modal = reactive(props.modal);
 const toggleModal = () => (modal.open = !modal.open);
 
 const router = useRouter();
-const herokuUrl = "https://pivpix.herokuapp.com";
+const herokuUrl = "https://piv-paramia.herokuapp.com";
 const socket = io(herokuUrl);
 const raspberryUrl = "http://localhost:5587/liberaRacao";
 

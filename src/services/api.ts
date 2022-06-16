@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 
 const api = axios.create({
-  baseURL: "https://pivpix.herokuapp.com/",
+  baseURL: "https://piv-paramia.herokuapp.com/",
   headers: {
     'Content-Type': 'application/json'
   }
