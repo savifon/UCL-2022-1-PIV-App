@@ -3,12 +3,12 @@
     "id": 1,
     "image": "product-1.jpg",
     "name": "Ração para cães adultos a granel - 100g",
-    "price": 0.01
+    "price": 0.50
   },
   {
     "id": 2,
     "image": "product-2.jpg",
     "name": "Ração para gatos adultos a granel - 100g",
-    "price": 0.02
+    "price": 0.70
   }
 ]
